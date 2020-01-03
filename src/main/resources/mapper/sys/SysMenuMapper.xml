@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hk.compass.modules.sys.mapper.SysMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.hk.compass.modules.sys.entity.SysMenu">
+        <id column="menu_id" property="menuId" />
+        <result column="parent_id" property="parentId" />
+        <result column="name" property="name" />
+        <result column="url" property="url" />
+        <result column="perms" property="perms" />
+        <result column="type" property="type" />
+        <result column="icon" property="icon" />
+        <result column="order_num" property="orderNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        menu_id, parent_id, name, url, perms, type, icon, order_num
+    </sql>
+
+
+    <select id="getMenusByParentId" resultType="org.hk.compass.modules.sys.entity.SysMenu">
+        select * from sys_menu where parent_id = #{pid} order by order_num asc
+    </select>
+
+
+    <select id="listUserMenuId" resultType="java.lang.Long">
+        select distinct srm.menu_id from sys_user_role sur
+        left join sys_role_menu srm
+        on sur.role_id = srm.role_id
+        where sur.user_id = #{userId}
+    </select>
+
+
+    <select id="getAllPerms" resultType="java.lang.String">
+        select distinct perms from sys_menu
+    </select>
+
+
+    <select id="getPermsByUserId" resultType="java.lang.String">
+        select distinct sm.perms
+             from sys_user_role sur
+        left join sys_role_menu srm on sur.role_id = srm.role_id
+        left join sys_menu sm on srm.menu_id = sm.menu_id
+            where sur.user_id = #{userId} and not ISNULL(sm.perms)
+    </select>
+
+
+</mapper>
