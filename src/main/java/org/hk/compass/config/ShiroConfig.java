@@ -66,7 +66,15 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/captcha.jpg", "anon");
         filterChainDefinitionMap.put("/sys/login", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
-        filterChainDefinitionMap.put("/**", "oauth2"); // 默认authc
+
+        // 过滤swagger
+        filterChainDefinitionMap.put("/swagger/**", "anon");
+        filterChainDefinitionMap.put("/v2/api-docs", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+
+        // 默认authc
+        filterChainDefinitionMap.put("/**", "oauth2");
         return filterChainDefinitionMap;
     }
 

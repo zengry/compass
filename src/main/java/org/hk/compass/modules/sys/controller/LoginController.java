@@ -1,5 +1,8 @@
 package org.hk.compass.modules.sys.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.hk.compass.constants.Constants;
 import org.hk.compass.modules.sys.entity.SysUser;
@@ -26,7 +29,7 @@ import java.io.IOException;
  * @description
  * @since 2019/12/27
  */
-
+@Api(description = "登录管理接口")
 @RestController
 public class LoginController extends AbstractController{
 
@@ -42,6 +45,7 @@ public class LoginController extends AbstractController{
     /**
      * 验证码
      */
+    @ApiOperation(value = "获取登录验证码图片")
     @GetMapping("captcha.jpg")
     public void captcha(HttpServletResponse response, String uuid) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
@@ -60,7 +64,6 @@ public class LoginController extends AbstractController{
 
     @PostMapping("/sys/login")
     public R login(@RequestBody  LoginForm loginForm){
-
         // 校验验证码
         boolean captcha = sysCaptchaService.validate(loginForm.getUuid(), loginForm.getCaptcha());
         if (!captcha) {

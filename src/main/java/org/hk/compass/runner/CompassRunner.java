@@ -23,5 +23,6 @@ public class CompassRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         log.info("程序启动完成，访问应用地址：http://localhost:" + port);
         log.info("程序启动完成，访问Druid地址：http://localhost:" + port + "/druid/");
+        log.info("程序启动完成，访问Swagger2地址：http://localhost:" + port + "/swagger-ui.html");
     }
 }
