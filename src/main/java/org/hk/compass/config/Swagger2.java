@@ -46,7 +46,7 @@ public class Swagger2 {
             .description("简单优雅的Restful风格API文档")
             .termsOfServiceUrl("http://localhost:8088/swagger-ui.html")
             .version("1.0")
-            .contact(new Contact("zengry", "http://localhost:8088/swagger-ui.html", "zengry@homeking365.com"))
+            .contact(new Contact("danny", "http://localhost:8088/swagger-ui.html", "1101694318@qq.com"))
             .build();
     }
 
