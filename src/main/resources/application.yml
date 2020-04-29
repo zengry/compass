@@ -9,9 +9,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://118.31.68.230:3306/myshiro?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://ip:3306/myshiro?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
     username: root
-    password: hkx123210
+    password: root
     druid:
       # 初始化时建立物理连接的个数, 初始化发生在显示调用init方法，或者第一次getConnection时（缺省值：0）
       initial-size: 10
